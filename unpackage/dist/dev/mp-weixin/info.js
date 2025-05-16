@@ -95,9 +95,9 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return common_vendor.e({
     a: !$data.isLoggedIn
   }, !$data.isLoggedIn ? {
-    b: common_assets._imports_0$1
+    b: common_assets._imports_0$2
   } : {
-    c: common_assets._imports_0$1,
+    c: common_assets._imports_0$2,
     d: common_vendor.t($data.userInfo.name),
     e: common_vendor.t($data.userInfo.id)
   }, {
