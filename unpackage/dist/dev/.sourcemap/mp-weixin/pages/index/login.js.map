@@ -1,0 +1,1 @@
+{"version":3,"file":"login.js","sources":["../../../ProgramData/HBuilderX/plugins/uniapp-cli-vite/uniPage:/cGFnZXMvaW5kZXgvbG9naW4udXZ1ZQ"],"sourcesContent":["import MiniProgramPage from 'D:/Projects/HBuilder/Gonggong/pages/index/login.uvue'\nwx.createPage(MiniProgramPage)"],"names":[],"mappings":";;;;;;;;;AACA,GAAG,WAAW,eAAe;"}

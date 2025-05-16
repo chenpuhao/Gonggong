@@ -1,0 +1,11 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/index/info",
+    "pages/index/login"
+  ],
+  "window": {
+    "navigationStyle": "custom"
+  },
+  "usingComponents": {}
+}

@@ -1,0 +1,401 @@
+@import "../../uvue.wxss";
+:host{display:flex;flex-direction:column}
+
+.container {
+  flex-direction: column;
+  width: 750rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* 顶部服务卡片区域 */
+.service-cards {
+  width: 750rpx;
+  height: 330rpx;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f66b6b;
+  border-radius: 0 0 30rpx 30rpx;
+  padding: 60rpx 20rpx 20rpx;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+.service-card {
+  align-items: center;
+  justify-content: center;
+  width: 200rpx;
+  height: 160rpx;
+  margin-top: 50rpx;
+}
+.service-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 16rpx;
+}
+.service-name {
+  font-size: 28rpx;
+  color: #ffffff;
+}
+
+/* 标签导航 */
+.tabs-wrapper {
+  width: 750rpx;
+  margin-top: 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  background-color: transparent;
+}
+.tab-header {
+  flex-direction: row;
+  justify-content: center;
+  padding: 20rpx 0;
+  position: relative;
+  background-color: transparent;
+}
+.tab-divider {
+  position: absolute;
+  width: 1rpx;
+  height: 30rpx;
+  background-color: #f0f0f0;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%);
+}
+.tab-item {
+  padding: 0 70rpx;
+  align-items: center;
+  position: relative;
+}
+.tab-text {
+  font-size: 32rpx;
+  color: #666666;
+}
+.tab-indicator {
+  position: absolute;
+  bottom: -1rpx;
+  height: 6rpx;
+  width: 80rpx;
+  background-color: #f66b6b;
+  border-radius: 3rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+}
+.tab-item.active .tab-text {
+  color: #f66b6b;
+  font-weight: bold;
+}
+.tab-item.active .tab-indicator {
+  opacity: 1;
+}
+
+/* 内容卡片 */
+.tab-container {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  width: 710rpx;
+  margin: 20rpx 20rpx 120rpx 20rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 课程表样式 */
+.schedule-content {
+  padding: 10rpx 0 40rpx 0;
+}
+.schedule-header {
+  flex-direction: row;
+  padding: 30rpx;
+  align-items: center;
+}
+.date-circle {
+  width: 80rpx;
+  height: 80rpx;
+  background-color: #f5f5f5;
+  border-radius: 40rpx;
+  justify-content: center;
+  align-items: center;
+}
+.date-number {
+  font-size: 40rpx;
+  font-weight: bold;
+}
+.date-info {
+  flex: 1;
+  margin-left: 30rpx;
+  flex-direction: column;
+  justify-content: center;
+}
+.date-day {
+  font-size: 42rpx;
+  font-weight: bold;
+  color: #ff8a8a;
+}
+.date-lessons {
+  font-size: 28rpx;
+  color: #999999;
+  margin-top: 5rpx;
+}
+.semester-info {
+  flex-direction: column;
+  align-items: flex-end;
+}
+.date-full {
+  font-size: 26rpx;
+  color: #333333;
+}
+.week-info {
+  font-size: 24rpx;
+  color: #666666;
+  margin-top: 5rpx;
+}
+.empty-schedule {
+  align-items: center;
+  justify-content: center;
+  padding: 50rpx 0;
+}
+.piggy-svg {
+  align-items: center;
+  justify-content: center;
+  margin: 30rpx 0;
+}
+.piggy-svg image {
+  width: 382rpx;
+  height: 256rpx;
+  margin-bottom: 30rpx;
+}
+.empty-text {
+  font-size: 30rpx;
+  color: #999999;
+  margin-bottom: 20rpx;
+}
+
+/* 倒计时头部 - 固定部分 */
+.countdown-header {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 30rpx;
+}
+.add-btn {
+  flex-direction: row;
+  align-items: center;
+  background-color: #f66b6b;
+  border-radius: 30rpx;
+  padding: 10rpx 30rpx;
+}
+.add-icon {
+  font-size: 36rpx;
+  color: #ffffff;
+  margin-right: 8rpx;
+}
+.add-text {
+  font-size: 28rpx;
+  color: #ffffff;
+}
+.filter {
+  flex-direction: row;
+  align-items: center;
+}
+.filter-item {
+  flex-direction: row;
+  align-items: center;
+}
+.circle {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 18rpx;
+  border: 2rpx solid #cccccc;
+  margin-right: 10rpx;
+}
+.circle.checked {
+  border-color: #f66b6b;
+  background-color: #f66b6b;
+}
+.filter-text {
+  font-size: 28rpx;
+  color: #666666;
+}
+
+/* 分割线 */
+.divider {
+  height: 1rpx;
+  background-color: #f0f0f0;
+  width: 100%;
+  margin: 10rpx 0;
+}
+
+/* 可滚动区域 */
+.countdown-scroll {
+  flex: 1;
+  height: 740rpx; /* 设置适当高度，使列表可滚动 */
+}
+
+/* 倒计时列表 */
+.countdown-list {
+  padding: 10rpx 30rpx;
+}
+.countdown-item {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  background-color: #ffffff;
+  width: 650rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+.countdown-item:last-child {
+  border-bottom: none;
+}
+.exam-info {
+  flex: 1;
+  flex-direction: column;
+}
+.exam-title-row {
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+.exam-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333;
+  margin-right: 15rpx;
+}
+.exam-tag {
+  background-color: #ffc187;
+  border-radius: 8rpx;
+  padding: 4rpx 12rpx;
+}
+.exam-tag text {
+  font-size: 22rpx;
+  color: #ffffff;
+}
+.exam-time {
+  flex-direction: row;
+  align-items: center;
+}
+.time-icon, .location-icon {
+  font-size: 24rpx;
+  color: #999;
+  margin-right: 5rpx;
+}
+.time-text, .location-text {
+  font-size: 24rpx;
+  color: #999;
+}
+.countdown-days {
+  flex-direction: row;
+  align-items: baseline;
+}
+.days-text {
+  font-size: 26rpx;
+  color: #999;
+  margin-right: 5rpx;
+}
+.days-number {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #f66b6b;
+}
+.days-unit {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 底部导航栏 */
+.tab-bar {
+  width: 750rpx;
+  height: 100rpx;
+  background-color: #ffffff;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-top: 1rpx solid #f0f0f0;
+}
+.tab-bar-item {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.tab-bar-icon {
+  width: 50rpx;
+  height: 50rpx;
+  margin-bottom: 5rpx;
+}
+.tab-bar-text {
+  font-size: 24rpx;
+  color: #999999;
+}
+.tab-bar-item.active .tab-bar-text {
+  color: #f66b6b;
+  font-weight: bold;
+}
+.tab-bar-item.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70rpx;
+  height: 4rpx;
+  background-color: #f66b6b;
+  border-radius: 2rpx;
+}
+.countdown-wrapper {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 2rpx;
+}
+.countdown-content {
+  width: 830rpx;
+  flex-direction: row;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+.movable-area {
+  width: 890rpx;
+  height: 160rpx;
+  position: relative;
+}
+.movable-view {
+  width: 650rpx;
+  height: 100%;
+  z-index: 2;
+}
+.action-buttons {
+  flex-direction: row;
+  height: 100%;
+  width: 240rpx;
+}
+.pin-btn, .delete-btn {
+  width: 120rpx;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.pin-btn {
+  background-color: #81c8ff;
+}
+.delete-btn {
+  background-color: #ff8a8a;
+}
+.btn-inner {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.pin-icon, .delete-icon {
+  font-size: 36rpx;
+  color: #ffffff;
+  margin-bottom: 8rpx;
+}
+.btn-text {
+  font-size: 24rpx;
+  color: #ffffff;
+}
+

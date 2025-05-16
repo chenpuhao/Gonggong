@@ -1,0 +1,32 @@
+{
+  "id": "__UNI__BE9A480",
+  "name": "拱拱",
+  "description": "",
+  "version": {
+    "name": "1.0.0",
+    "code": "100"
+  },
+  "uni-app-x": {
+    "compilerVersion": "4.65"
+  },
+  "app": {
+    "distribute": {
+      "icons": {
+        "android": {
+          "hdpi": "unpackage/res/icons/72x72.png",
+          "xhdpi": "unpackage/res/icons/96x96.png",
+          "xxhdpi": "unpackage/res/icons/144x144.png",
+          "xxxhdpi": "unpackage/res/icons/192x192.png"
+        },
+        "ios": {
+          "appstore": "unpackage/res/icons/1024x1024.png"
+        }
+      },
+      "splashScreens": {
+        "ios": {
+          "storyboard": "D:\\Projects\\HBuilder\\Gonggong\\unpackage\\storyboard.zip"
+        }
+      }
+    }
+  }
+}

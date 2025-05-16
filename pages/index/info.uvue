@@ -1,0 +1,397 @@
+<template>
+  <view class="container">
+    <!-- 顶部粉色区域 -->
+    <view class="top-section">
+      <!-- 未登录状态 - 左侧头像 -->
+      <view v-if="!isLoggedIn" class="login-header">
+        <image class="avatar" src="/static/images/avatar.png"></image>
+        <view class="login-text-container">
+          <text class="login-text">点击登录</text>
+          <text class="id-text">ID:</text>
+        </view>
+      </view>
+
+      <!-- 已登录状态 - 居中头像和信息 -->
+      <view v-else class="profile-header">
+        <view class="avatar-container">
+          <image class="avatar" src="/static/images/avatar.png"></image>
+        </view>
+        <text class="username">{{userInfo.name}}</text>
+        <text class="user-id">ID: {{userInfo.id}}</text>
+      </view>
+    </view>
+
+    <!-- 小Tips区域 -->
+    <view class="tips-section">
+      <text class="tips-title">小Tips</text>
+
+      <!-- 菜单列表 -->
+      <view class="menu-card">
+        <view class="menu-item" @click="handleMenuClick('contact')">
+          <text class="menu-text">联系我们</text>
+          <text class="arrow">›</text>
+        </view>
+
+        <view class="divider"></view>
+
+        <view class="menu-item" @click="handleMenuClick('agreement')">
+          <text class="menu-text">用户协议</text>
+          <text class="arrow">›</text>
+        </view>
+
+        <view class="divider"></view>
+
+        <view class="menu-item" @click="handleMenuClick('privacy')">
+          <text class="menu-text">隐私条款</text>
+          <text class="arrow">›</text>
+        </view>
+
+        <view class="divider"></view>
+
+        <view class="version-item">
+          <text class="menu-text">当前版本</text>
+          <text class="version-text">3.0.20250507-beta</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 登录/退出按钮 -->
+    <view class="login-button-container">
+      <view class="login-button" @click="handleLoginAction">
+        <text>{{isLoggedIn ? '退出登录' : '登录'}}</text>
+      </view>
+    </view>
+
+    <!-- 底部导航 -->
+    <view class="tab-bar">
+      <view class="tab-bar-item" @click="switchPage('index')">
+        <image class="tab-bar-icon" src="/static/images/home.png"></image>
+        <text class="tab-bar-text">首页</text>
+      </view>
+      <view class="tab-bar-item active">
+        <image class="tab-bar-icon" src="/static/images/user-active.png"></image>
+        <text class="tab-bar-text">我的</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      isLoggedIn: false,
+      userInfo: {
+        name: '陈朴浩',
+        id: '202405721336'
+      }
+    }
+  },
+  onLoad() {
+    this.checkLoginStatus();
+  },
+  methods: {
+    checkLoginStatus() {
+      const token = uni.getStorageSync('token');
+      this.isLoggedIn = !!token;
+
+      if (this.isLoggedIn) {
+        this.getUserInfo();
+      }
+    },
+
+    getUserInfo() {
+      // API调用将在后续实现
+      // 目前使用data中的静态数据
+    },
+
+    handleLoginAction() {
+      if (this.isLoggedIn) {
+        uni.showModal({
+          title: '提示',
+          content: '确定要退出登录吗？',
+          success: (res) => {
+            if (res.confirm) {
+              uni.removeStorageSync('token');
+              this.isLoggedIn = false;
+              uni.showToast({
+                title: '已退出登录',
+                icon: 'none'
+              });
+            }
+          }
+        });
+      } else {
+        uni.navigateTo({
+          url: './login',
+          fail: (err) => {
+            console.error('页面跳转失败', err);
+            uni.showToast({
+              title: '页面跳转失败',
+              icon: 'none'
+            });
+          }
+        });
+      }
+    },
+
+    handleMenuClick(type) {
+      switch(type) {
+        case 'contact':
+          uni.showToast({
+            title: '联系我们',
+            icon: 'none'
+          });
+          break;
+        case 'agreement':
+          uni.showToast({
+            title: '用户协议',
+            icon: 'none'
+          });
+          break;
+        case 'privacy':
+          uni.showToast({
+            title: '隐私条款',
+            icon: 'none'
+          });
+          break;
+        default:
+          break;
+      }
+    },
+
+    switchPage(page) {
+      if (page === 'index') {
+        uni.redirectTo({
+          url: './index',
+          fail: (err) => {
+            console.error('页面跳转失败', err);
+            uni.showToast({
+              title: '页面跳转失败',
+              icon: 'none'
+            });
+          }
+        });
+      }
+    }
+  }
+}
+</script>
+
+<style>
+.container {
+  flex-direction: column;
+  width: 750rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* 顶部粉色区域 */
+.top-section {
+  width: 750rpx;
+  height: 400rpx;
+  background-color: #f66b6b;
+  border-radius: 0 0 30rpx 30rpx;
+  position: relative;
+}
+
+/* 未登录状态布局 */
+.login-header {
+  flex-direction: row;
+  align-items: center;
+  padding: 120rpx 40rpx;
+}
+
+.login-header .avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  border: 4rpx solid #fff;
+}
+
+.login-text-container {
+  margin-left: 30rpx;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 已登录状态布局 */
+.profile-header {
+  align-items: center;
+  justify-content: center;
+  padding-top: 80rpx;
+}
+
+.avatar-container {
+  width: 170rpx;
+  height: 170rpx;
+  border-radius: 85rpx;
+  background-color: #ffffff;
+  align-items: center;
+  justify-content: center;
+  border: 4rpx solid #ffffff;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+
+.profile-header .avatar {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 80rpx;
+}
+
+/* 用户信息样式 */
+.username {
+  font-size: 42rpx;
+  color: #ffffff;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+
+.user-id {
+  font-size: 32rpx;
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+/* 登录文本样式 */
+.login-text {
+  font-size: 42rpx;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.id-text {
+  font-size: 32rpx;
+  color: #ffffff;
+  opacity: 0.9;
+  margin-top: 8rpx;
+}
+
+/* 小Tips区域 */
+.tips-section {
+  width: 710rpx;
+  margin: 30rpx 20rpx;
+}
+
+.tips-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 20rpx;
+  margin-left: 10rpx;
+}
+
+/* 菜单卡片 */
+.menu-card {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  padding: 0 30rpx;
+}
+
+/* 菜单项 */
+.menu-item {
+  height: 100rpx;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 版本项 */
+.version-item {
+  height: 100rpx;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu-text {
+  font-size: 32rpx;
+  color: #333333;
+}
+
+.arrow {
+  font-size: 40rpx;
+  color: #cccccc;
+  font-weight: 300;
+}
+
+.version-text {
+  font-size: 28rpx;
+  color: #999999;
+}
+
+/* 分割线 */
+.divider {
+  height: 1rpx;
+  background-color: #f0f0f0;
+  width: 100%;
+}
+
+/* 登录/退出按钮 */
+.login-button-container {
+  width: 670rpx;
+  margin: 60rpx 40rpx 120rpx;
+}
+
+.login-button {
+  width: 100%;
+  height: 90rpx;
+  background-color: #f66b6b;
+  border-radius: 45rpx;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+/* 底部导航 */
+.tab-bar {
+  width: 750rpx;
+  height: 100rpx;
+  background-color: #ffffff;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.tab-bar-item {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.tab-bar-icon {
+  width: 50rpx;
+  height: 50rpx;
+  margin-bottom: 5rpx;
+}
+
+.tab-bar-text {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.tab-bar-item.active .tab-bar-text {
+  color: #f66b6b;
+  font-weight: bold;
+}
+
+.tab-bar-item.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70rpx;
+  height: 4rpx;
+  background-color: #f66b6b;
+  border-radius: 2rpx;
+}
+</style>

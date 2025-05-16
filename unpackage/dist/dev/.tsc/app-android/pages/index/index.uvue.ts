@@ -1,0 +1,142 @@
+
+						 const __sfc__ = defineComponent({
+						  data() {
+						   return {
+						    title: '校园服务',
+						    currentTab: 'schedule',
+						    todayLessons: 0,
+						    currentDate: '2025/05/13',
+						    currentWeek: '13',
+						    serviceCards: [
+						     {
+						      title: '空教室',
+						      image: '/static/icons/classroom.png',
+						      url: '/pages/classroom/index'
+						     },
+						     {
+						      title: '查成绩',
+						      image: '/static/icons/trophy.png',
+						      url: '/pages/grades/index'
+						     },
+						     {
+						      title: '课程表',
+						      image: '/static/icons/calendar.png',
+						      url: '/pages/schedule/index'
+						     }
+						    ]
+						   }
+						  },
+						  onLoad() {
+						   // 页面加载时执行的函数
+						   console.log('校园服务页面加载完成', " at pages/index/index.uvue:96");
+						   // 检查图标是否存在
+						   // 获取当前日期
+						   this.getCurrentDate();
+						  },
+						  methods: {
+						   // 跳转到对应的页面
+						
+						   // 获取当前日期
+						   getCurrentDate() {
+						    const date = new Date();
+						    const year = date.getFullYear();
+						    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+						    const day = ('0' + date.getDate()).slice(-2);
+						    this.currentDate = `${year}/${month}/${day}`;
+						   }
+						  }
+						 })
+						
+export default __sfc__
+function GenPagesIndexIndexRender(this: InstanceType<typeof __sfc__>): any | null {
+const _ctx = this
+const _cache = this.$.renderCache
+  return createElementVNode("view", utsMapOf({ class: "container" }), [
+    createElementVNode("view", utsMapOf({ class: "service-cards" }), [
+      createElementVNode("view", utsMapOf({ class: "service-card" }), [
+        createElementVNode("image", utsMapOf({ class: "service-icon" })),
+        createElementVNode("text", utsMapOf({ class: "service-name" }), "空教室")
+      ]),
+      createElementVNode("view", utsMapOf({ class: "service-card" }), [
+        createElementVNode("image", utsMapOf({
+          class: "service-icon",
+          src: "/static/icons/trophy.png"
+        })),
+        createElementVNode("text", utsMapOf({ class: "service-name" }), "查成绩")
+      ]),
+      createElementVNode("view", utsMapOf({ class: "service-card" }), [
+        createElementVNode("image", utsMapOf({
+          class: "service-icon",
+          src: "/static/icons/calendar.png"
+        })),
+        createElementVNode("text", utsMapOf({ class: "service-name" }), "课程表")
+      ])
+    ]),
+    createElementVNode("view", utsMapOf({ class: "tab-container" }), [
+      createElementVNode("view", utsMapOf({ class: "tab-header" }), [
+        createElementVNode("view", utsMapOf({
+          class: normalizeClass(["tab-item", utsMapOf({ active: _ctx.currentTab === 'schedule' })])
+        }), [
+          createElementVNode("text", utsMapOf({ class: "tab-text" }), "课程表")
+        ], 2 /* CLASS */),
+        createElementVNode("view", utsMapOf({
+          class: normalizeClass(["tab-item", utsMapOf({ active: _ctx.currentTab === 'countdown' })])
+        }), [
+          createElementVNode("text", utsMapOf({ class: "tab-text" }), "倒计时")
+        ], 2 /* CLASS */)
+      ]),
+      _ctx.currentTab === 'schedule'
+        ? createElementVNode("view", utsMapOf({
+            key: 0,
+            class: "schedule-content"
+          }), [
+            createElementVNode("view", utsMapOf({ class: "schedule-header" }), [
+              createElementVNode("view", utsMapOf({ class: "date-circle" }), [
+                createElementVNode("text", utsMapOf({ class: "date-number" }), toDisplayString(_ctx.todayLessons), 1 /* TEXT */)
+              ]),
+              createElementVNode("view", utsMapOf({ class: "date-info" }), [
+                createElementVNode("text", utsMapOf({ class: "date-day" }), "TUE."),
+                createElementVNode("text", utsMapOf({ class: "date-lessons" }), "今日共" + toDisplayString(_ctx.todayLessons) + "节课", 1 /* TEXT */)
+              ]),
+              createElementVNode("view", utsMapOf({ class: "semester-info" }), [
+                createElementVNode("text", utsMapOf({ class: "date-full" }), toDisplayString(_ctx.currentDate), 1 /* TEXT */),
+                createElementVNode("text", utsMapOf({ class: "week-info" }), "第" + toDisplayString(_ctx.currentWeek) + "周", 1 /* TEXT */)
+              ])
+            ]),
+            _ctx.todayLessons > 0
+              ? createElementVNode("view", utsMapOf({
+                  key: 0,
+                  class: "schedule-body"
+                }))
+              : createElementVNode("view", utsMapOf({
+                  key: 1,
+                  class: "empty-schedule"
+                }), [
+                  createElementVNode("image", utsMapOf({
+                    class: "empty-image",
+                    src: "/static/piggy.png"
+                  })),
+                  createElementVNode("text", utsMapOf({ class: "empty-text" }), "今天没有课哦~")
+                ])
+          ])
+        : createCommentVNode("v-if", true)
+    ]),
+    createElementVNode("view", utsMapOf({ class: "tab-bar" }), [
+      createElementVNode("view", utsMapOf({ class: "tab-bar-item active" }), [
+        createElementVNode("image", utsMapOf({
+          class: "tab-bar-icon",
+          src: "/static/icons/home-active.png"
+        })),
+        createElementVNode("text", utsMapOf({ class: "tab-bar-text" }), "首页")
+      ]),
+      createElementVNode("view", utsMapOf({ class: "tab-bar-item" }), [
+        createElementVNode("image", utsMapOf({
+          class: "tab-bar-icon",
+          src: "/static/icons/user.png"
+        })),
+        createElementVNode("text", utsMapOf({ class: "tab-bar-text" }), "我的")
+      ])
+    ])
+  ])
+}
+const GenPagesIndexIndexStyles = [utsMapOf([["container", padStyleMapOf(utsMapOf([["flexDirection", "column"], ["width", "750rpx"], ["backgroundColor", "#f5f5f5"]]))], ["header", padStyleMapOf(utsMapOf([["paddingTop", "30rpx"], ["paddingRight", "30rpx"], ["paddingBottom", "30rpx"], ["paddingLeft", "30rpx"], ["backgroundColor", "#ffffff"], ["width", "750rpx"], ["alignItems", "center"]]))], ["title", padStyleMapOf(utsMapOf([["fontSize", "36rpx"], ["color", "#333333"], ["fontWeight", "bold"]]))], ["service-cards", padStyleMapOf(utsMapOf([["marginTop", "-50rpx"], ["width", "750rpx"], ["height", "250rpx"], ["flexDirection", "row"], ["justifyContent", "space-around"], ["alignItems", "center"], ["backgroundColor", "#f66b6b"], ["borderTopLeftRadius", 0], ["borderTopRightRadius", 0], ["borderBottomRightRadius", "30rpx"], ["borderBottomLeftRadius", "30rpx"], ["paddingTop", "20rpx"], ["paddingRight", "20rpx"], ["paddingBottom", "20rpx"], ["paddingLeft", "20rpx"], ["boxShadow", "0 4rpx 10rpx rgba(0, 0, 0, 0.1)"]]))], ["service-card", padStyleMapOf(utsMapOf([["alignItems", "center"], ["justifyContent", "center"], ["width", "180rpx"], ["height", "160rpx"]]))], ["service-icon", padStyleMapOf(utsMapOf([["width", "100rpx"], ["height", "100rpx"], ["marginBottom", "10rpx"]]))], ["service-name", padStyleMapOf(utsMapOf([["fontSize", "28rpx"], ["color", "#ffffff"]]))], ["tab-container", padStyleMapOf(utsMapOf([["marginTop", "20rpx"], ["backgroundColor", "#ffffff"], ["borderTopLeftRadius", "20rpx"], ["borderTopRightRadius", "20rpx"], ["borderBottomRightRadius", "20rpx"], ["borderBottomLeftRadius", "20rpx"], ["width", "710rpx"], ["marginLeft", "20rpx"], ["marginRight", "20rpx"], ["paddingBottom", "30rpx"], ["flex", 1]]))], ["tab-header", padStyleMapOf(utsMapOf([["flexDirection", "row"], ["justifyContent", "flex-start"], ["borderBottomWidth", "1rpx"], ["borderBottomColor", "#eeeeee"], ["paddingTop", "30rpx"]]))], ["tab-item", utsMapOf([["", utsMapOf([["marginLeft", "50rpx"], ["marginRight", "50rpx"], ["paddingBottom", "10rpx"], ["position", "relative"]])], [".active:after", utsMapOf([["content", "\"\""], ["position", "absolute"], ["bottom", 0], ["left", 0], ["right", 0], ["height", "6rpx"], ["backgroundColor", "#f66b6b"], ["borderTopLeftRadius", "3rpx"], ["borderTopRightRadius", "3rpx"], ["borderBottomRightRadius", "3rpx"], ["borderBottomLeftRadius", "3rpx"]])]])], ["tab-text", utsMapOf([["", utsMapOf([["fontSize", "30rpx"], ["color", "#333333"], ["paddingBottom", "10rpx"]])], [".tab-item.active ", utsMapOf([["color", "#f66b6b"], ["fontWeight", "bold"]])]])], ["schedule-header", padStyleMapOf(utsMapOf([["flexDirection", "row"], ["paddingTop", "30rpx"], ["paddingRight", "30rpx"], ["paddingBottom", "30rpx"], ["paddingLeft", "30rpx"], ["alignItems", "center"]]))], ["date-circle", padStyleMapOf(utsMapOf([["width", "80rpx"], ["height", "80rpx"], ["backgroundColor", "#f5f5f5"], ["borderTopLeftRadius", "40rpx"], ["borderTopRightRadius", "40rpx"], ["borderBottomRightRadius", "40rpx"], ["borderBottomLeftRadius", "40rpx"], ["justifyContent", "center"], ["alignItems", "center"]]))], ["date-number", padStyleMapOf(utsMapOf([["fontSize", "40rpx"], ["fontWeight", "bold"]]))], ["date-info", padStyleMapOf(utsMapOf([["flex", 1], ["marginLeft", "20rpx"], ["flexDirection", "column"], ["justifyContent", "center"]]))], ["date-day", padStyleMapOf(utsMapOf([["fontSize", "32rpx"], ["fontWeight", "bold"], ["color", "#f66b6b"]]))], ["date-lessons", padStyleMapOf(utsMapOf([["fontSize", "24rpx"], ["color", "#666666"], ["marginTop", "5rpx"]]))], ["semester-info", padStyleMapOf(utsMapOf([["flexDirection", "column"], ["alignItems", "flex-end"]]))], ["date-full", padStyleMapOf(utsMapOf([["fontSize", "26rpx"], ["color", "#333333"]]))], ["week-info", padStyleMapOf(utsMapOf([["fontSize", "24rpx"], ["color", "#666666"], ["marginTop", "5rpx"]]))], ["empty-schedule", padStyleMapOf(utsMapOf([["alignItems", "center"], ["justifyContent", "center"], ["paddingTop", "50rpx"], ["paddingRight", "50rpx"], ["paddingBottom", "50rpx"], ["paddingLeft", "50rpx"]]))], ["empty-image", padStyleMapOf(utsMapOf([["width", "200rpx"], ["height", "200rpx"], ["marginBottom", "20rpx"]]))], ["empty-text", padStyleMapOf(utsMapOf([["fontSize", "28rpx"], ["color", "#999999"]]))], ["tab-bar", padStyleMapOf(utsMapOf([["width", "750rpx"], ["height", "100rpx"], ["backgroundColor", "#ffffff"], ["flexDirection", "row"], ["justifyContent", "space-around"], ["alignItems", "center"], ["position", "fixed"], ["bottom", 0], ["left", 0], ["borderTopWidth", "1rpx"], ["borderTopColor", "#eeeeee"]]))], ["tab-bar-item", padStyleMapOf(utsMapOf([["flex", 1], ["alignItems", "center"], ["justifyContent", "center"]]))], ["tab-bar-icon", padStyleMapOf(utsMapOf([["width", "50rpx"], ["height", "50rpx"], ["marginBottom", "5rpx"]]))], ["tab-bar-text", utsMapOf([["", utsMapOf([["fontSize", "24rpx"], ["color", "#999999"]])], [".tab-bar-item.active ", utsMapOf([["color", "#f66b6b"]])]])]])]

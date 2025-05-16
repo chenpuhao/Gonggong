@@ -1,0 +1,1 @@
+{"version":3,"file":"info.js","sources":["../../../ProgramData/HBuilderX/plugins/uniapp-cli-vite/uniPage:/cGFnZXMvaW5kZXgvaW5mby51dnVl"],"sourcesContent":["import MiniProgramPage from 'D:/Projects/HBuilder/Gonggong/pages/index/info.uvue'\nwx.createPage(MiniProgramPage)"],"names":["MiniProgramPage"],"mappings":";;AACA,GAAG,WAAWA,KAAe,eAAA;"}
